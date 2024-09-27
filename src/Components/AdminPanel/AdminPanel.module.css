@@ -1,0 +1,79 @@
+.adminPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0079bf;
+  padding: 0 !important;
+}
+.adminPanel__container {
+  padding: 30px;
+  flex-grow: 1;
+  background-color: #fff;
+}
+.adminPanel__title {
+  color: #000000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.adminPanel__button_wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+.adminPanel__text {
+  margin-bottom: 0;
+  color: #000000;
+  font-size: 18px;
+}
+.adminPanel__button {
+  width: 25px;
+  height: 25px;
+  background-color: #ebecf0;
+  border-style: none;
+  border-radius: 50%;
+  border: solid 1px #8f8f8f;
+  cursor: pointer;
+  margin-bottom: 0;
+  color: #0079bf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+.adminPanel__plus {
+  margin-bottom: 0;
+}
+.adminPanel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  width: 100%;
+  max-width: 400px;
+}
+
+.adminPanel li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adminPanel__deleteButton {
+  margin-left: 10px;
+}
+.adminPanel__userText {
+  font-size: 18px;
+  margin-bottom: 0;
+  color: #000000;
+}
+.form__add {
+  display: flex;
+  flex-direction: column;
+  gap: 10px !important;
+}

@@ -1,4 +1,3 @@
-// src/Components/Logout/Logout.jsx
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Logout.module.css";
@@ -8,12 +7,10 @@ const Logout = ({ onLogout }) => {
 
   useEffect(() => {
     onLogout();
-    // Устанавливаем таймер на 5 секунд
     const timer = setTimeout(() => {
       navigate("/login");
     }, 5000);
 
-    // Очистка таймера при размонтировании компонента
     return () => clearTimeout(timer);
   }, [navigate, onLogout]);
 

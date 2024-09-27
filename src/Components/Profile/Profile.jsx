@@ -1,4 +1,3 @@
-// src/components/Profile.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.css";
 
@@ -25,15 +24,15 @@ const Profile = () => {
   const getBackgroundColor = (column) => {
     switch (column) {
       case "Backlog":
-        return "rgb(255 128 128)"; // Красный
+        return "rgb(255 128 128)";
       case "Ready":
-        return "rgb(255 163 71)"; // Оранжевый
+        return "rgb(255 163 71)";
       case "In Progress":
-        return "rgb(245 245 76)"; // Желтый
+        return "rgb(245 245 76)";
       case "Finished":
-        return "rgb(82 226 82)"; // Зеленый
+        return "rgb(82 226 82)";
       default:
-        return "#FFFFFF"; // Белый (по умолчанию)
+        return "#FFFFFF";
     }
   };
 

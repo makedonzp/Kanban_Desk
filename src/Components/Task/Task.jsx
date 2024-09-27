@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Task.module.css";
-import deleteIcon from "../../assets/delete_icon.png"; // Путь к иконке удаления
+import deleteIcon from "../../assets/delete_icon.png";
 
 const Task = ({ task, moveTask, deleteTask, columns }) => {
-  console.log("Task component rendered with task:", task);
-
   const handleMove = (e) => {
     const newColumn = e.target.value;
     moveTask(task.id, newColumn);
@@ -15,19 +13,18 @@ const Task = ({ task, moveTask, deleteTask, columns }) => {
     deleteTask(task.id);
   };
 
-  // Определение цвета фона в зависимости от статуса задания
   const getBackgroundColor = () => {
     switch (task.column) {
       case "Backlog":
-        return "rgb(255 128 128)"; // Красный
+        return "rgb(255 128 128)";
       case "Ready":
-        return "rgb(255 163 71)"; // Оранжевый
+        return "rgb(255 163 71)";
       case "In Progress":
-        return "rgb(245 245 76)"; // Желтый
+        return "rgb(245 245 76)";
       case "Finished":
-        return "rgb(82 226 82)"; // Зеленый
+        return "rgb(82 226 82)";
       default:
-        return "#FFFFFF"; // Белый (по умолчанию)
+        return "#FFFFFF";
     }
   };
 

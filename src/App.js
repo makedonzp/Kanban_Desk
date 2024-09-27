@@ -1,26 +1,53 @@
-// src/App.js
 import React, { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { initializeUser, checkCredentials } from "./api/auth";
+import {
+  initializeUsers,
+  checkCredentials,
+  getUserRole,
+  checkAutoLogin,
+  setAutoLoginFlag,
+  setLoginTime,
+  checkTestAccountTime,
+} from "./api/auth";
 import LoginForm from "./Components/LoginForm/LoginForm";
 import Layout from "./Components/Layout/Layout";
 import Logout from "./Components/Logout/Logout";
+import AdminPanel from "./Components/AdminPanel/AdminPanel";
 import styles from "./App.module.css";
-import { Container } from "react-bootstrap";
+import { Container, Modal, Button } from "react-bootstrap";
+
+const USERS_KEY = "users";
+const LOGIN_TIME_KEY = "loginTime";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [userRole, setUserRole] = useState(null);
+  const [users, setUsers] = useState(initializeUsers());
+  const [showTestAccountModal, setShowTestAccountModal] = useState(false);
 
   useEffect(() => {
+    const autoLogin = checkAutoLogin();
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      console.log("User found in localStorage:", user);
+    if (autoLogin && user) {
       setIsAuthenticated(true);
+      setUserRole(getUserRole(user.username));
+      if (getUserRole(user.username) === "test") {
+        setShowTestAccountModal(true);
+      }
     } else {
-      console.log("No user found in localStorage");
+      console.log("No auto login, redirecting to login page");
     }
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isAuthenticated && userRole === "test" && !checkTestAccountTime()) {
+        handleLogout();
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [isAuthenticated, userRole]);
 
   const handleLogin = (username, password) => {
     console.log(
@@ -29,13 +56,19 @@ const App = () => {
       "and password:",
       password
     );
-    initializeUser(); // Вызываем initializeUser при каждой попытке входа
-    if (checkCredentials(username, password)) {
+    if (checkCredentials(username, password, users)) {
       const user = { username, password };
       localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      setAutoLoginFlag(true);
+      setLoginTime();
       console.log("Login successful, setting isAuthenticated to true");
       setIsAuthenticated(true);
+      setUserRole(getUserRole(username));
       setErrorMessage("");
+      if (getUserRole(username) === "test") {
+        setShowTestAccountModal(true);
+      }
     } else {
       console.log("Login failed, setting error message");
       setErrorMessage("Для входа обратитесь к создателю проекта");
@@ -44,12 +77,35 @@ const App = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem(LOGIN_TIME_KEY);
+    setAutoLoginFlag(false);
     console.log("Logout successful, setting isAuthenticated to false");
     setIsAuthenticated(false);
+    setUserRole(null);
   };
 
   return (
     <Container fluid className={styles.app}>
+      <Modal
+        show={showTestAccountModal}
+        onHide={() => setShowTestAccountModal(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Внимание</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Данный аккаунт является тестовым, поэтому время использования
+          ограничено 10 минутами.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            onClick={() => setShowTestAccountModal(false)}
+          >
+            Понятно
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <Routes>
         <Route
           path="/login"
@@ -62,6 +118,16 @@ const App = () => {
           }
         />
         <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
+        <Route
+          path="/admin"
+          element={
+            isAuthenticated && userRole === "admin" ? (
+              <AdminPanel />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
         <Route
           path="/*"
           element={

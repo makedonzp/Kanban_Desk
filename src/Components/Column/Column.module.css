@@ -8,8 +8,8 @@
   border: 1px solid #ccc;
   min-width: 282px;
   gap: 20px;
-  height: max-content; /* Устанавливаем высоту на 100% */
-  overflow-y: auto; /* Добавляем вертикальный скролл, если контент превышает максимальную высоту */
+  height: max-content;
+  overflow-y: auto;
   max-height: 500px;
 }
 
@@ -19,7 +19,7 @@
 
 .column__add {
   color: #5e6c84;
-  margin-top: auto; /* Прижимаем кнопку к низу */
+  margin-top: auto;
   cursor: pointer;
   width: 102px;
   background-color: #fff;
@@ -32,6 +32,6 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  flex-grow: 1; /* Занимает все доступное пространство */
-  overflow-y: auto; /* Добавляем вертикальный скролл, если контент превышает максимальную высоту */
+  flex-grow: 1;
+  overflow-y: auto;
 }

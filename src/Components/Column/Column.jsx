@@ -5,8 +5,6 @@ import styles from "./Column.module.css";
 import { Col } from "react-bootstrap";
 
 const Column = ({ title, issues, addTask, moveTask, deleteTask, columns }) => {
-  console.log("Column component rendered with issues:", issues);
-
   const [showForm, setShowForm] = useState(false);
 
   const handleAddTask = (task) => {

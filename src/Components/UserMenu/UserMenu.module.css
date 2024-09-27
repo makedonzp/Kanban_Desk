@@ -1,7 +1,6 @@
-/* src/Components/UserMenu/UserMenu.module.css */
 .userMenu {
   position: absolute;
-  top: 100%; /* Разместить меню под иконкой пользователя */
+  top: 100%;
   right: 0;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -10,7 +9,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  z-index: 1000; /* Убедиться, что меню находится поверх других элементов */
+  z-index: 1000;
   width: 134px;
 }
 
@@ -27,7 +26,6 @@
   display: block;
   text-decoration: none;
   color: #333;
-  padding: 10px;
 }
 
 .userMenu__link:hover {

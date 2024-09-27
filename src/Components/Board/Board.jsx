@@ -1,4 +1,3 @@
-// src/Components/Board/Board.jsx
 import React, { useEffect, useState, useCallback } from "react";
 import Column from "../Column/Column";
 import styles from "./Board.module.css";
@@ -18,7 +17,6 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("kanbanData"));
     if (savedData) {
-      console.log("Loaded data from localStorage:", savedData);
       setData(savedData);
     }
   }, []);

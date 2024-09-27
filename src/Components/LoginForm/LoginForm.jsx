@@ -9,12 +9,6 @@ const LoginForm = ({ onLogin, errorMessage }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      "Submitting login form with username:",
-      username,
-      "and password:",
-      password
-    );
     onLogin(username, password);
   };
 
