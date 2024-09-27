@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form__input {
+  padding: 7px 8px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.form__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form__button {
+  background-color: #0079bf;
+  color: #fff;
+  border-radius: 5px;
+  padding: 4px 8px;
+  border-style: none;
+  width: 102px;
+}

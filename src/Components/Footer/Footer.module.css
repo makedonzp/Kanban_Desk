@@ -1,0 +1,23 @@
+.footer {
+  background-color: #0067a3;
+  padding: 10px;
+}
+.footer__title {
+  text-align: right;
+  text-wrap: nowrap;
+  color: #fff;
+}
+.footer__title_wrapper {
+  display: flex;
+  justify-content: center;
+  justify-content: flex-start;
+  gap: 36px;
+}
+@media (max-width: 568px) {
+  .footer__title_wrapper {
+    justify-content: center;
+  }
+  .footer__title {
+    text-align: center;
+  }
+}

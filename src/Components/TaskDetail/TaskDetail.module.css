@@ -1,0 +1,78 @@
+.taskDetail {
+  padding-block: 20px;
+  border-radius: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  padding-left: 3% !important;
+  padding-right: 3% !important;
+}
+.taskDetail__container {
+  flex-grow: 1;
+  padding-block: 20px;
+  display: flex;
+}
+.taskDetail__back {
+  display: flex;
+  justify-content: flex-end;
+  max-height: 30px;
+}
+.taskDetail__title {
+  max-height: 100px;
+  text-align: center;
+}
+.taskDetail h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.taskDetail p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.taskDetail a {
+  color: #0079bf;
+  text-decoration: none;
+}
+.taskDetail__back_link {
+  background-image: url("../../assets/delete_icon.png");
+  height: 25px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+.taskDetail__info {
+  flex-direction: column;
+  flex-grow: 1;
+}
+.taskDetail__date {
+  font-size: 14px !important;
+}
+.taskDetail__info_date {
+  text-align: center;
+}
+.taskDetail__start {
+  color: #0079bf;
+}
+
+.taskDetail__end {
+  color: #0079bf;
+}
+.taskDetail__time {
+  color: #0079bf;
+}
+
+@media (max-width: 476px) {
+  .taskDetail__date {
+    text-wrap: nowrap;
+  }
+}

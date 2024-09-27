@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("./fonts/Roboto-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("./fonts/Roboto-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url("./fonts/Roboto-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  font-family: "Roboto-Regular";
+  font-size: 16px;
+}
+
+.app {
+  font-family: "Roboto-Regular";
+  font-size: 14px;
+  padding: 0 !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+/* src/App.module.css */

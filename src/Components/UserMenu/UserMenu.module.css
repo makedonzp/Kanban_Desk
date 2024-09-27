@@ -1,0 +1,35 @@
+/* src/Components/UserMenu/UserMenu.module.css */
+.userMenu {
+  position: absolute;
+  top: 100%; /* Разместить меню под иконкой пользователя */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000; /* Убедиться, что меню находится поверх других элементов */
+  width: 134px;
+}
+
+.userMenu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.userMenu li:hover {
+  background-color: #f0f0f0;
+}
+
+.userMenu__link {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+}
+
+.userMenu__link:hover {
+  background-color: #f0f0f0;
+}

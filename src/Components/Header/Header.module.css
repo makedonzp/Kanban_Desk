@@ -1,0 +1,59 @@
+/* src/Components/Header/Header.module.css */
+.header {
+  background-color: #0067a3;
+  height: clamp(2.5rem, 2.232rem + 1.34vw, 3.438rem);
+  display: flex;
+  align-items: center;
+  position: relative; /* Добавлено для позиционирования меню */
+}
+
+.header__title {
+  color: #ffff;
+  font-size: clamp(1.5rem, 1.429rem + 0.36vw, 1.75rem);
+  font-weight: 400;
+  font-family: "Roboto-Light", serif;
+  text-wrap: nowrap;
+}
+
+.user__icon {
+  height: clamp(1.25rem, 0.929rem + 1.61vw, 2.375rem);
+  width: clamp(1.25rem, 0.929rem + 1.61vw, 2.375rem);
+}
+
+.user_wraper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: flex-end;
+  position: relative; /* Добавлено для позиционирования меню */
+  gap: 8px;
+}
+
+.user__icon_up_down {
+  color: #ffff;
+}
+
+.header__title_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header__title_link {
+  text-decoration: none;
+}
+
+.login_link_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.login_link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login_link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,44 @@
+.task {
+  background-color: #ffffff;
+  padding: 7px 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: solid 1px #8f8f8f;
+  flex-direction: column;
+  gap: 12px;
+}
+.task__controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task__name {
+  flex-grow: 1;
+  text-decoration: none;
+  color: #000000;
+}
+
+.task__select {
+  margin-left: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.task__delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.task__delete img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
