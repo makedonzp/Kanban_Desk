@@ -1,3 +1,4 @@
+// src/api/auth.js
 const USERS_KEY = "users";
 const AUTO_LOGIN_FLAG = "autoLoginFlag";
 const LOGIN_TIME_KEY = "loginTime";
@@ -10,7 +11,18 @@ export const initializeUsers = () => {
       password: "32657845mn",
       role: "admin",
     };
-    users.push(defaultUser);
+    const userMelix = {
+      username: "melix",
+      password: "123321",
+      role: "user",
+    };
+    const userAnna = {
+      username: "Anna",
+      password: "123321",
+      role: "user",
+    };
+    users.push(defaultUser, userMelix, userAnna);
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
   }
   return users;
 };
