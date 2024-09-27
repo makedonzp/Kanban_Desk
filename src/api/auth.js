@@ -9,6 +9,9 @@ export const initializeUsers = () => {
       username: "makedonzp",
       password: "32657845mn",
       role: "admin",
+      username: "Anna",
+      password: "123321",
+      role: "user",
     };
     users.push(defaultUser);
   }
