@@ -86,22 +86,15 @@ const App = () => {
 
   return (
     <Container fluid className={styles.app}>
-      <Modal
-        show={showTestAccountModal}
-        onHide={() => setShowTestAccountModal(false)}
-      >
+      <Modal show={showTestAccountModal} onHide={() => setShowTestAccountModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Внимание</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Данный аккаунт является тестовым, поэтому время использования
-          ограничено 10 минутами.
+          Данный аккаунт является тестовым, поэтому время использования ограничено 10 минутами.
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="primary"
-            onClick={() => setShowTestAccountModal(false)}
-          >
+          <Button variant="primary" onClick={() => setShowTestAccountModal(false)}>
             Понятно
           </Button>
         </Modal.Footer>
