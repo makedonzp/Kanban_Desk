@@ -1,6 +1,6 @@
 // src/Components/AdminPanel/AdminPanel.jsx
 import React, { useState, useEffect } from "react";
-import { initializeUsers, addUser, deleteUser } from "../../api/auth";
+import { initializeUsers } from "../../api/auth";
 import styles from "./AdminPanel.module.css";
 import { Button, Modal, Form, Container, Row, Col } from "react-bootstrap";
 
