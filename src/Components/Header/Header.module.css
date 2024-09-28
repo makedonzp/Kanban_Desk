@@ -1,10 +1,9 @@
-/* src/Components/Header/Header.module.css */
 .header {
   background-color: #0067a3;
-  height: clamp(2.5rem, 2.232rem + 1.34vw, 3.438rem);
+  height: clamp(3.2rem, 2.232rem + 1.34vw, 2.438rem);
   display: flex;
   align-items: center;
-  position: relative; /* Добавлено для позиционирования меню */
+  position: relative;
 }
 
 .header__title {
@@ -15,7 +14,33 @@
   text-wrap: nowrap;
   margin-bottom: 0;
 }
-
+.user__overdue_count {
+  width: clamp(1.25rem, 1.023rem + 1.14vw, 1.875rem);
+  height: clamp(1.25rem, 1.023rem + 1.14vw, 1.875rem);
+  background-image: url("../../assets/pngwing.com.png");
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: clamp(0.75rem, 0.676rem + 0.36vw, 1rem);
+  position: relative;
+}
+.notificationBadge {
+  position: absolute;
+  top: clamp(0.25rem, 0.182rem + 0.34vw, 0.438rem);
+  right: 0;
+  background-color: red;
+  border-radius: 50%;
+  width: clamp(0.625rem, 0.511rem + 0.57vw, 0.938rem);
+  height: clamp(0.625rem, 0.511rem + 0.57vw, 0.938rem);
+  font-size: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .user__icon {
   height: clamp(1.25rem, 0.929rem + 1.61vw, 2.375rem);
   width: clamp(1.25rem, 0.929rem + 1.61vw, 2.375rem);
@@ -57,4 +82,10 @@
 
 .login_link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .header__title_wrapper {
+    display: none;
+  }
 }

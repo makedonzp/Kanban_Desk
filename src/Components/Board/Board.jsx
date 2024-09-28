@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Column from "../Column/Column";
 import styles from "./Board.module.css";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Modal, Button } from "react-bootstrap";
 
 const Board = ({ setActiveTasks, setFinishedTasks }) => {
   const initialData = [
@@ -12,6 +12,7 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
   ];
 
   const [data, setData] = useState(initialData);
+  const [showAutoDeleteModal, setShowAutoDeleteModal] = useState(false);
   const columns = initialData.map((column) => column.title);
 
   useEffect(() => {
@@ -69,28 +70,59 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
       if (column.title === toColumn) {
         return {
           ...column,
-          issues: [...toTasks, { ...task, column: toColumn }],
+          issues: [
+            ...toTasks,
+            {
+              ...task,
+              column: toColumn,
+              movedToFinishedAt: toColumn === "Finished" ? Date.now() : null,
+            },
+          ],
         };
       }
       return column;
     });
     setData(newData);
     localStorage.setItem("kanbanData", JSON.stringify(newData));
+
+    if (toColumn === "Finished") {
+      setShowAutoDeleteModal(true);
+    }
   };
 
-  const deleteTask = (columnTitle, taskId) => {
-    const newData = data.map((column) => {
-      if (column.title === columnTitle) {
-        return {
-          ...column,
-          issues: column.issues.filter((task) => task.id !== taskId),
-        };
+  const deleteTask = useCallback(
+    (columnTitle, taskId) => {
+      const newData = data.map((column) => {
+        if (column.title === columnTitle) {
+          return {
+            ...column,
+            issues: column.issues.filter((task) => task.id !== taskId),
+          };
+        }
+        return column;
+      });
+      setData(newData);
+      localStorage.setItem("kanbanData", JSON.stringify(newData));
+    },
+    [data]
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const finishedColumn = data.find((col) => col.title === "Finished");
+      if (finishedColumn) {
+        const now = Date.now();
+        const tasksToDelete = finishedColumn.issues.filter(
+          (task) =>
+            task.movedToFinishedAt &&
+            now - task.movedToFinishedAt >= 24 * 60 * 60 * 1000
+        );
+        tasksToDelete.forEach((task) => deleteTask("Finished", task.id));
       }
-      return column;
-    });
-    setData(newData);
-    localStorage.setItem("kanbanData", JSON.stringify(newData));
-  };
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [data, deleteTask]);
 
   return (
     <Container className={styles.board}>
@@ -107,6 +139,25 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
           />
         ))}
       </Row>
+      <Modal
+        show={showAutoDeleteModal}
+        onHide={() => setShowAutoDeleteModal(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Внимание</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Задание будет автоматически удалено через 24 часа.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            onClick={() => setShowAutoDeleteModal(false)}
+          >
+            Понятно
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

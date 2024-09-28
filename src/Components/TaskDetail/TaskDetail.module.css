@@ -9,6 +9,7 @@
   background-color: #fff;
   padding-left: 3% !important;
   padding-right: 3% !important;
+  height: clamp(31.125rem, 22.679rem + 27.23vw, 47.188rem);
 }
 .taskDetail__fluid {
   background-color: #0079bf;

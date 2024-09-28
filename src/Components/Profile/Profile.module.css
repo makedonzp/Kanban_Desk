@@ -37,6 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
 }
 .taskDetails {
   display: flex;
@@ -52,9 +53,17 @@
   border-radius: 5px;
   position: relative;
   width: 60vw;
-  height: 55vh;
+  min-height: 55vh;
+  position: absolute;
+  top: 100px;
 }
-
+.filter {
+  margin-block: 20px;
+  max-width: 150px;
+}
+.filter__option {
+  width: 50px;
+}
 .closeButton {
   background-image: url("../../assets/delete_icon.png");
   background-repeat: no-repeat;

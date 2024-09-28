@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.css";
+import { Form } from "react-bootstrap";
 
 const Profile = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("kanbanData"));
@@ -36,11 +38,49 @@ const Profile = () => {
     }
   };
 
+  const filteredAndSortedTasks = tasks
+    .filter((task) => {
+      if (filter === "all") return true;
+      if (filter === "overdue") return new Date(task.dueDate) < new Date();
+      return task.column === filter;
+    })
+    .sort((a, b) => {
+      // Сортируем по дате окончания от меньше оставшейся к больше оставшейся
+      return new Date(a.dueDate) - new Date(b.dueDate);
+    });
+
   return (
     <div className={styles.profile}>
       <h2 className={styles.title}>Список личных Задач</h2>
+      <Form.Group controlId="filter">
+        <Form.Control
+          as="select"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className={styles.filter}
+        >
+          <option className={styles.filter__option} value="all">
+            Все
+          </option>
+          <option className={styles.filter__option} value="overdue">
+            Просроченные
+          </option>
+          <option className={styles.filter__option} value="Backlog">
+            Backlog
+          </option>
+          <option className={styles.filter__option} value="Ready">
+            Ready
+          </option>
+          <option className={styles.filter__option} value="In Progress">
+            In Progress
+          </option>
+          <option className={styles.filter__option} value="Finished">
+            Finished
+          </option>
+        </Form.Control>
+      </Form.Group>
       <div className={styles.taskList}>
-        {tasks.map((task) => (
+        {filteredAndSortedTasks.map((task) => (
           <div
             key={task.id}
             className={styles.taskItem}

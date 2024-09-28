@@ -28,7 +28,6 @@ const App = () => {
     const autoLogin = checkAutoLogin();
     const user = JSON.parse(localStorage.getItem("user"));
     if (autoLogin && user) {
-      console.log("Auto login successful, setting isAuthenticated to true");
       setIsAuthenticated(true);
       const role = getUserRole(user.username);
       setUserRole(role);
@@ -36,7 +35,6 @@ const App = () => {
         setShowTestAccountModal(true);
       }
     } else {
-      console.log("No auto login, redirecting to login page");
     }
   }, []);
 
@@ -86,15 +84,22 @@ const App = () => {
 
   return (
     <Container fluid className={styles.app}>
-      <Modal show={showTestAccountModal} onHide={() => setShowTestAccountModal(false)}>
+      <Modal
+        show={showTestAccountModal}
+        onHide={() => setShowTestAccountModal(false)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Внимание</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Данный аккаунт является тестовым, поэтому время использования ограничено 10 минутами.
+          Данный аккаунт является тестовым, поэтому время использования
+          ограничено 10 минутами.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => setShowTestAccountModal(false)}>
+          <Button
+            variant="primary"
+            onClick={() => setShowTestAccountModal(false)}
+          >
             Понятно
           </Button>
         </Modal.Footer>
