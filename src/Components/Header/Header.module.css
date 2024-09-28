@@ -13,6 +13,7 @@
   font-weight: 400;
   font-family: "Roboto-Light", serif;
   text-wrap: nowrap;
+  margin-bottom: 0;
 }
 
 .user__icon {

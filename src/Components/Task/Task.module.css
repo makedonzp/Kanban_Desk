@@ -19,6 +19,8 @@
   flex-grow: 1;
   text-decoration: none;
   color: #000000;
+  min-height: 30px;
+  width: 100%;
 }
 
 .task__select {

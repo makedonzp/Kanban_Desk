@@ -1,3 +1,4 @@
+// src/Components/TaskDetail/TaskDetail.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import styles from "./TaskDetail.module.css";
@@ -51,48 +52,52 @@ const TaskDetail = () => {
   }
 
   return (
-    <Container className={styles.taskDetail__container}>
-      <Container className={styles.taskDetail}>
-        <Row className={styles.taskDetail__info}>
-          <Col className={styles.taskDetail__back}>
-            <Link className={styles.taskDetail__back_link} to="/"></Link>
-          </Col>
+    <Container fluid className={styles.taskDetail__fluid}>
+      <Container className={styles.taskDetail__container}>
+        <Container className={styles.taskDetail}>
+          <Row className={styles.taskDetail__info}>
+            <Col className={styles.taskDetail__back}>
+              <Link className={styles.taskDetail__back_link} to="/"></Link>
+            </Col>
 
-          <Col className={styles.taskDetail__title}>
-            <h2>{task.name}</h2>
-          </Col>
+            <Col className={styles.taskDetail__title}>
+              <h2>{task.name}</h2>
+            </Col>
 
-          <Col>
-            <p>{task.description}</p>
-          </Col>
-        </Row>
-        <Row className={styles.taskDetail__info_date}>
-          <Col>
-            <p
-              className={
-                styles.taskDetail__date + " " + styles.taskDetail__start
-              }
-            >
-              Дата создания: {new Date(task.createdAt).toLocaleString()}
-            </p>
-          </Col>
-          <Col>
-            <p
-              className={styles.taskDetail__date + " " + styles.taskDetail__end}
-            >
-              Дата окончания: {new Date(task.dueDate).toLocaleString()}
-            </p>
-          </Col>
-          <Col>
-            <p
-              className={
-                styles.taskDetail__date + " " + styles.taskDetail__time
-              }
-            >
-              Осталось: {timeLeft}
-            </p>
-          </Col>
-        </Row>
+            <Col className={styles.taskDetail__description}>
+              <p>{task.description}</p>
+            </Col>
+          </Row>
+          <Row className={styles.taskDetail__info_date}>
+            <Col>
+              <p
+                className={
+                  styles.taskDetail__date + " " + styles.taskDetail__start
+                }
+              >
+                Дата создания: {new Date(task.createdAt).toLocaleString()}
+              </p>
+            </Col>
+            <Col>
+              <p
+                className={
+                  styles.taskDetail__date + " " + styles.taskDetail__end
+                }
+              >
+                Дата окончания: {new Date(task.dueDate).toLocaleString()}
+              </p>
+            </Col>
+            <Col>
+              <p
+                className={
+                  styles.taskDetail__date + " " + styles.taskDetail__time
+                }
+              >
+                Осталось: {timeLeft}
+              </p>
+            </Col>
+          </Row>
+        </Container>
       </Container>
     </Container>
   );

@@ -1,3 +1,4 @@
+// src/Components/Task/Task.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Task.module.css";
@@ -49,7 +50,7 @@ const Task = ({ task, moveTask, deleteTask, columns }) => {
           <img src={deleteIcon} alt="Delete" />
         </button>
       </div>
-      <Link to={`/tasks/${task.id}`} className={styles.task__name}>
+      <Link to={`/task/${task.id}`} className={styles.task__name}>
         {typeof task.name === "object" ? JSON.stringify(task.name) : task.name}
       </Link>
     </div>

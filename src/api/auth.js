@@ -1,64 +1,43 @@
-const USERS_KEY = "users";
-const AUTO_LOGIN_FLAG = "autoLoginFlag";
-const LOGIN_TIME_KEY = "loginTime";
+const users = [
+  { username: "makedonzp", password: "rfinfyrf123", role: "admin" },
+  { username: "Anna", password: "123321", role: "user" },
+  { username: "melix", password: "123321", role: "user" },
+  { username: "test", password: "test", role: "test" },
+  { username: "admin", password: "admin", role: "admin" },
+  { username: "user", password: "user", role: "user" },
+];
 
 export const initializeUsers = () => {
-  const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-  if (users.length === 0) {
-    const defaultUser = {
-      username: "makedonzp",
-      password: "32657845mn",
-      role: "admin",
-    };
-    users.push(defaultUser);
-  }
   return users;
 };
 
-export const checkCredentials = (username, password, users) => {
-  return users.some(
+export const checkCredentials = (username, password) => {
+  const user = users.find(
     (user) => user.username === username && user.password === password
   );
-};
-
-export const addUser = (username, password, role = "user") => {
-  const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-  const newUser = { username, password, role };
-  users.push(newUser);
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
-};
-
-export const getUsers = () => {
-  return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+  return !!user;
 };
 
 export const getUserRole = (username) => {
-  const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
   const user = users.find((user) => user.username === username);
   return user ? user.role : null;
 };
 
-export const deleteUser = (username) => {
-  const users = JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-  const updatedUsers = users.filter((user) => user.username !== username);
-  localStorage.setItem(USERS_KEY, JSON.stringify(updatedUsers));
-};
-
 export const checkAutoLogin = () => {
-  const autoLoginFlag = localStorage.getItem(AUTO_LOGIN_FLAG);
+  const autoLoginFlag = localStorage.getItem("autoLoginFlag");
   return autoLoginFlag !== "false";
 };
 
 export const setAutoLoginFlag = (flag) => {
-  localStorage.setItem(AUTO_LOGIN_FLAG, flag);
+  localStorage.setItem("autoLoginFlag", flag);
 };
 
 export const setLoginTime = () => {
-  localStorage.setItem(LOGIN_TIME_KEY, Date.now());
+  localStorage.setItem("loginTime", Date.now());
 };
 
 export const getLoginTime = () => {
-  return parseInt(localStorage.getItem(LOGIN_TIME_KEY)) || 0;
+  return parseInt(localStorage.getItem("loginTime")) || 0;
 };
 
 export const checkTestAccountTime = () => {

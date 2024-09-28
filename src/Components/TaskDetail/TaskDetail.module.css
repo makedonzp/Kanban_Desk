@@ -7,15 +7,20 @@
   justify-content: space-between;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-
   padding-left: 3% !important;
   padding-right: 3% !important;
+}
+.taskDetail__fluid {
+  background-color: #0079bf;
+  height: 100vh;
+  overflow-y: scroll;
 }
 .taskDetail__container {
   flex-grow: 1;
   padding-block: 20px;
   display: flex;
 }
+
 .taskDetail__back {
   display: flex;
   justify-content: flex-end;

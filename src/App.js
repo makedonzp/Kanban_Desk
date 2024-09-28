@@ -1,7 +1,7 @@
+// src/App.js
 import React, { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import {
-  initializeUsers,
   checkCredentials,
   getUserRole,
   checkAutoLogin,
@@ -16,23 +16,23 @@ import AdminPanel from "./Components/AdminPanel/AdminPanel";
 import styles from "./App.module.css";
 import { Container, Modal, Button } from "react-bootstrap";
 
-const USERS_KEY = "users";
 const LOGIN_TIME_KEY = "loginTime";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [userRole, setUserRole] = useState(null);
-  const [users, setUsers] = useState(initializeUsers());
   const [showTestAccountModal, setShowTestAccountModal] = useState(false);
 
   useEffect(() => {
     const autoLogin = checkAutoLogin();
     const user = JSON.parse(localStorage.getItem("user"));
     if (autoLogin && user) {
+      console.log("Auto login successful, setting isAuthenticated to true");
       setIsAuthenticated(true);
-      setUserRole(getUserRole(user.username));
-      if (getUserRole(user.username) === "test") {
+      const role = getUserRole(user.username);
+      setUserRole(role);
+      if (role === "test") {
         setShowTestAccountModal(true);
       }
     } else {
@@ -49,24 +49,24 @@ const App = () => {
     return () => clearInterval(interval);
   }, [isAuthenticated, userRole]);
 
-  const handleLogin = (username, password) => {
+  const handleLogin = async (username, password) => {
     console.log(
       "Attempting login with username:",
       username,
       "and password:",
       password
     );
-    if (checkCredentials(username, password, users)) {
+    if (await checkCredentials(username, password)) {
       const user = { username, password };
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem(USERS_KEY, JSON.stringify(users));
       setAutoLoginFlag(true);
       setLoginTime();
       console.log("Login successful, setting isAuthenticated to true");
       setIsAuthenticated(true);
-      setUserRole(getUserRole(username));
+      const role = await getUserRole(username);
+      setUserRole(role);
       setErrorMessage("");
-      if (getUserRole(username) === "test") {
+      if (role === "test") {
         setShowTestAccountModal(true);
       }
     } else {

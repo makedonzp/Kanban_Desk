@@ -1,26 +1,27 @@
+// src/Components/AdminPanel/AdminPanel.jsx
 import React, { useState, useEffect } from "react";
-import { getUsers, addUser, deleteUser } from "../../api/auth";
+import { initializeUsers, addUser, deleteUser } from "../../api/auth";
 import styles from "./AdminPanel.module.css";
 import { Button, Modal, Form, Container, Row, Col } from "react-bootstrap";
 
 const AdminPanel = () => {
-  const [users, setUsers] = useState(getUsers());
+  const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("user");
 
   useEffect(() => {
-    setUsers(getUsers());
+    setUsers(initializeUsers());
   }, []);
 
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    addUser(username, password, role);
-    setUsers(getUsers());
+    const newUser = { username, password, role };
+    setUsers([...users, newUser]);
     setUsername("");
     setPassword("");
     setRole("user");
@@ -28,20 +29,20 @@ const AdminPanel = () => {
   };
 
   const handleDeleteUser = (username) => {
-    deleteUser(username);
-    setUsers(getUsers());
+    const updatedUsers = users.filter((user) => user.username !== username);
+    setUsers(updatedUsers);
   };
 
   const getBackgroundColor = (role) => {
     switch (role) {
       case "admin":
-        return "rgb(82 226 82)";
+        return "rgb(82 226 82)"; // Зеленый
       case "user":
-        return "rgb(245 245 76)";
+        return "rgb(245 245 76)"; // Желтый
       case "test":
-        return "rgb(255 128 128)";
+        return "rgb(255 128 128)"; // Красный
       default:
-        return "#FFFFFF";
+        return "#FFFFFF"; // Белый (по умолчанию)
     }
   };
 
