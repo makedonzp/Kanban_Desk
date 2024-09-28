@@ -27,13 +27,13 @@ const AddTaskForm = ({ onSubmit, onCancel }) => {
         type="text"
         value={taskName}
         onChange={(e) => setTaskName(e.target.value)}
-        placeholder="Enter task name"
+        placeholder="имя задания"
       />
       <textarea
         className={styles.form__input}
         value={taskDescription}
         onChange={(e) => setTaskDescription(e.target.value)}
-        placeholder="Enter task description"
+        placeholder="описание задания"
       />
       <input
         className={styles.form__input}
@@ -49,14 +49,14 @@ const AddTaskForm = ({ onSubmit, onCancel }) => {
       />
       <div className={styles.form__buttons}>
         <button className={styles.form__button} type="submit">
-          Submit
+          Подтвердить
         </button>
         <button
           className={styles.form__button}
           type="button"
           onClick={onCancel}
         >
-          Cancel
+          Отменить
         </button>
       </div>
     </form>

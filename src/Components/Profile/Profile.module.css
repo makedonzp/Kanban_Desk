@@ -2,6 +2,7 @@
   padding: 20px;
   flex-grow: 1;
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 .taskList {

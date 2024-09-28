@@ -16,7 +16,7 @@ const LoginForm = ({ onLogin, errorMessage }) => {
     <Container fluid className={styles.loginForm}>
       <Row>
         <Col className={styles.loginForm__container}>
-          <h2 className={styles.loginForm__title}>Kanban Desk</h2>
+          <h2 className={styles.loginForm__title}>Канбан Доска</h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
               <input

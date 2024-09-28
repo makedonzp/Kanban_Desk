@@ -11,19 +11,19 @@ const UserMenu = () => {
     <ul className={styles.userMenu}>
       <li>
         <Link to="/profile" className={styles.userMenu__link}>
-          Profile
+          Профиль
         </Link>
       </li>
       {userRole === "admin" && (
         <li>
           <Link to="/admin" className={styles.userMenu__link}>
-            Admin Panel
+            Админпанель
           </Link>
         </li>
       )}
       <li>
         <Link to="/logout" className={styles.userMenu__link}>
-          Logout
+          Выйти
         </Link>
       </li>
     </ul>
