@@ -124,10 +124,15 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
     return () => clearInterval(interval);
   }, [data, deleteTask]);
 
+  const getPreviousColumnIssues = (currentColumnIndex) => {
+    if (currentColumnIndex === 0) return []; // Первая колонка не имеет предыдущей
+    return data[currentColumnIndex - 1].issues;
+  };
+
   return (
     <Container className={styles.board}>
       <Row className={styles.board__row}>
-        {data.map((column) => (
+        {data.map((column, index) => (
           <Column
             key={column.title}
             title={column.title}
@@ -136,6 +141,7 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
             moveTask={moveTask}
             deleteTask={deleteTask}
             columns={columns}
+            previousColumnIssues={getPreviousColumnIssues(index)}
           />
         ))}
       </Row>

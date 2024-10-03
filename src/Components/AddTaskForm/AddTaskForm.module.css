@@ -23,4 +23,10 @@
   padding: 4px 8px;
   border-style: none;
   width: 102px;
+  transition: all 0.7s ease;
+}
+.form__button:hover {
+  cursor: pointer;
+  transition: all 0.7s ease;
+  background-color: #13a1f4;
 }

@@ -6,31 +6,21 @@
   justify-content: space-between;
   align-items: flex-start;
   border: solid 1px #8f8f8f;
-  flex-direction: column;
-  gap: 12px;
+  min-height: 100px;
 }
 .task__controls {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 .task__name {
   flex-grow: 1;
   text-decoration: none;
   color: #000000;
-  min-height: 30px;
-  width: 100%;
+  min-height: 80px;
+  width: 75%;
+  word-wrap: break-word;
 }
-
-.task__select {
-  margin-left: 8px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 0;
-}
-
 .task__delete {
   background: none;
   border: none;

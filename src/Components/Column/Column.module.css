@@ -12,7 +12,20 @@
   overflow-y: auto;
   max-height: clamp(31.125rem, 22.679rem + 27.23vw, 47.188rem);
 }
-
+.form__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form__button {
+  background-color: #0079bf;
+  color: #fff;
+  border-radius: 5px;
+  padding: 4px 8px;
+  border-style: none;
+  width: 102px;
+  margin-top: 12px;
+}
 .column__title {
   font-size: clamp(0.875rem, 0.804rem + 0.36vw, 1.125rem);
 }
@@ -27,6 +40,12 @@
   border-radius: 5px;
   border-style: none;
   font-size: 18px;
+  transition: all 0.7s ease;
+}
+.column__add:hover {
+  background-color: #0079bf;
+  transition: all 0.7s ease;
+  color: #fff;
 }
 .tasks__container {
   display: flex;
@@ -34,4 +53,11 @@
   gap: 15px;
   flex-grow: 1;
   overflow-y: auto;
+}
+.column__add:disabled {
+  background-color: #cccccc;
+  color: #888888;
+}
+.form__option {
+  max-width: 100px;
 }

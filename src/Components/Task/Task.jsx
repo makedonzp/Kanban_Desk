@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Task.module.css";
 import deleteIcon from "../../assets/delete_icon.png";
 
-const Task = ({ task, moveTask, deleteTask, columns }) => {
-  const handleMove = (e) => {
-    const newColumn = e.target.value;
-    moveTask(task.id, newColumn);
-  };
-
+const Task = ({ task, deleteTask }) => {
   const handleDelete = () => {
     deleteTask(task.id);
   };
@@ -33,25 +28,14 @@ const Task = ({ task, moveTask, deleteTask, columns }) => {
       className={styles.task}
       style={{ backgroundColor: getBackgroundColor() }}
     >
+      <Link to={`/task/${task.id}`} className={styles.task__name}>
+        {typeof task.name === "object" ? JSON.stringify(task.name) : task.name}
+      </Link>
       <div className={styles.task__controls}>
-        <select
-          className={styles.task__select}
-          onChange={handleMove}
-          value={task.column}
-        >
-          {columns.map((column) => (
-            <option key={column} value={column}>
-              {column}
-            </option>
-          ))}
-        </select>
         <button className={styles.task__delete} onClick={handleDelete}>
           <img src={deleteIcon} alt="Delete" />
         </button>
       </div>
-      <Link to={`/task/${task.id}`} className={styles.task__name}>
-        {typeof task.name === "object" ? JSON.stringify(task.name) : task.name}
-      </Link>
     </div>
   );
 };
