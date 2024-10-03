@@ -64,7 +64,7 @@ const TaskDetail = () => {
             </Col>
 
             <Col className={styles.taskDetail__description}>
-              <p>{task.description}</p>
+              <p>{task.description || "У этого задания нет описания"}</p>
             </Col>
           </Row>
           <Row className={styles.taskDetail__info_date}>
