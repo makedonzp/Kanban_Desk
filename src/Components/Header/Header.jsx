@@ -37,7 +37,7 @@ const Header = () => {
   }, []);
 
   const handleOverdueTasksClick = (event) => {
-    event.stopPropagation(); // Предотвращаем закрытие меню пользователя
+    event.stopPropagation();
     setShowOverdueTasksModal(true);
   };
 

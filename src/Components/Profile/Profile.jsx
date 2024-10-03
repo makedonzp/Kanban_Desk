@@ -45,7 +45,6 @@ const Profile = () => {
       return task.column === filter;
     })
     .sort((a, b) => {
-      // Сортируем по дате окончания от меньше оставшейся к больше оставшейся
       return new Date(a.dueDate) - new Date(b.dueDate);
     });
 

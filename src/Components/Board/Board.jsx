@@ -125,7 +125,7 @@ const Board = ({ setActiveTasks, setFinishedTasks }) => {
   }, [data, deleteTask]);
 
   const getPreviousColumnIssues = (currentColumnIndex) => {
-    if (currentColumnIndex === 0) return []; // Первая колонка не имеет предыдущей
+    if (currentColumnIndex === 0) return [];
     return data[currentColumnIndex - 1].issues;
   };
 

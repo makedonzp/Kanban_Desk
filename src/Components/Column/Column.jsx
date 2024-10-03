@@ -56,7 +56,7 @@ const Column = ({
       backgroundColor: state.isSelected ? "#0079bf" : "#fff",
       color: state.isSelected ? "#fff" : "#000",
       padding: "8px",
-      wordWrap: "break-word", // Добавляем автоперенос текста
+      wordWrap: "break-word",
     }),
   };
 

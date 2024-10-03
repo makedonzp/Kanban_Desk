@@ -1,4 +1,3 @@
-// src/Components/AdminPanel/AdminPanel.jsx
 import React, { useState, useEffect } from "react";
 import { initializeUsers } from "../../api/auth";
 import styles from "./AdminPanel.module.css";
